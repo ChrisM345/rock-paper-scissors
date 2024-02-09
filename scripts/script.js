@@ -13,17 +13,53 @@ function getComputerChoice(){
 }
 
 function playRound(playerSelection, computerSelection){
+    
     if (playerSelection == computerSelection){
-        return "Tie! You both picked " + playerSelection;
+        console.log("Tie! You both picked " + playerSelection);
+        return 'tie';
     }
     if (playerSelection == 'Rock' && computerSelection == 'Scissors'){
-        return "You Win! " + playerSelection + " beats " + computerSelection;
+        console.log("You Win! " + playerSelection + " beats " + computerSelection);
+        return 1;
     }
     if (playerSelection == 'Paper' && computerSelection == 'Rock'){
-        return "You Win! " + playerSelection + " beats " + computerSelection;
+        console.log("You Win! " + playerSelection + " beats " + computerSelection);
+        return 1;
     }
     if (playerSelection == 'Scissors' && computerSelection == 'Paper'){
-        return "You Win! " + playerSelection + " beats " +computerSelection;
+        console.log("You Win! " + playerSelection + " beats " +computerSelection);
+        return 1;
     }
-    return "You Lose! " + playerSelection + " loses to " + computerSelection;
+    console.log("You Lose! " + playerSelection + " loses to " + computerSelection);
+    return 0;
+}
+
+function playGame(){
+    playerRoundsWon = 0;
+    computerRoundsWon = 0;
+    for (let i = 0; i < 5; i++){
+        playerChoice = prompt("Rock, Paper, or Scissors?");
+        playerChoice = playerChoice.charAt(0).toUpperCase() + playerChoice.slice(1).toLowerCase();
+        while (playerChoice != 'Rock' && playerChoice != "Paper" && playerChoice != "Scissors"){
+            playerChoice = prompt("Incorrect choice. Rock, Paper, or Scissors?")
+            playerChoice = playerChoice.charAt(0).toUpperCase() + playerChoice.slice(1).toLowerCase();
+        }
+
+        result = playRound(playerChoice, getComputerChoice())
+        switch(result){
+            case 'tie':
+                break;
+            case 1:
+                playerRoundsWon++;
+                break;
+            case 0:
+                computerRoundsWon++;
+                break;
+        }
+    }
+    if (playerRoundsWon == computerRoundsWon) {winner = 'Final Result: A Tie!'}
+    else if (playerRoundsWon > computerRoundsWon) {winner = 'Final Result: You Win!'}
+    else {winner = 'Final Result: You Lose!'}
+
+    console.log(`You won ${playerRoundsWon} rounds and the computer won ${computerRoundsWon}. ${winner}`)
 }
