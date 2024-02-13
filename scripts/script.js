@@ -63,3 +63,21 @@ function playGame(){
 
     console.log(`You won ${playerRoundsWon} rounds and the computer won ${computerRoundsWon}. ${winner}`)
 }
+
+const rock = document.querySelector('.rock');
+rock.addEventListener('click', (e) => {
+    console.log("rock");
+    playRound(e.target.innerText, getComputerChoice())
+})
+
+const paper = document.querySelector('.paper');
+paper.addEventListener('click', (e) =>{
+    console.log('paper')
+    playRound(e.target.innerText, getComputerChoice())
+})
+
+const scissors = document.querySelector('.scissors');
+scissors.addEventListener('click', (e) => {
+    console.log('scissors')
+    playRound(e.target.innerText, getComputerChoice());
+})
