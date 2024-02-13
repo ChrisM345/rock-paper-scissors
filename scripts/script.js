@@ -1,3 +1,7 @@
+let playerRoundsWon = 0;
+let computerRoundsWon = 0;
+let ties = 0;
+
 function getComputerChoice(){
     number = Math.floor(Math.random() * 3);
     switch(number){
@@ -22,61 +26,33 @@ function playRound(playerSelection, computerSelection){
     resultText = document.querySelector('.result-text');
     pWins = document.querySelector('.pWins');
     cWins = document.querySelector('.cWins');
-    ties = document.querySelector('.ties');
+    tiesSection = document.querySelector('.ties');
     if (playerSelection == computerSelection){
-        //console.log("Tie! You both picked " + playerSelection);
+        ties++;
         resultText.innerText = `Result: It's a tie!`
-        ties.innerText = Number(ties.innerText) + 1;
+        tiesSection.innerText = ties;
     }
     else if (playerSelection == 'Rock' && computerSelection == 'Scissors'){
-        //console.log("You Win! " + playerSelection + " beats " + computerSelection);
+        playerRoundsWon++;
         resultText.innerText = `Result: You Win!`;
-        pWins.innerText = Number(pWins.innerText) + 1;
+        pWins.innerText = playerRoundsWon;
     }
     else if (playerSelection == 'Paper' && computerSelection == 'Rock'){
-        console.log("You Win! " + playerSelection + " beats " + computerSelection);
+        playerRoundsWon++;
         resultText.innerText = `Result: You Win!`;
-        pWins.innerText = Number(pWins.innerText) + 1;
+        pWins.innerText = playerRoundsWon;
     }
     else if (playerSelection == 'Scissors' && computerSelection == 'Paper'){
-        console.log("You Win! " + playerSelection + " beats " +computerSelection);
+        playerRoundsWon++;
         resultText.innerText = `Result: You Win!`;
-        pWins.innerText = Number(pWins.innerText) + 1;
+        pWins.innerText = playerRoundsWon;
     } else {
+        computerRoundsWon++;
         resultText.innerText = `Result: You Lose!`;
-        cWins.innerText = Number(cWins.innerText) + 1;
+        cWins.innerText = computerRoundsWon;
     }
 };
 
-function playGame(){
-    playerRoundsWon = 0;
-    computerRoundsWon = 0;
-    for (let i = 0; i < 5; i++){
-        playerChoice = prompt("Rock, Paper, or Scissors?");
-        playerChoice = playerChoice.charAt(0).toUpperCase() + playerChoice.slice(1).toLowerCase();
-        while (playerChoice != 'Rock' && playerChoice != "Paper" && playerChoice != "Scissors"){
-            playerChoice = prompt("Incorrect choice. Rock, Paper, or Scissors?")
-            playerChoice = playerChoice.charAt(0).toUpperCase() + playerChoice.slice(1).toLowerCase();
-        }
-
-        result = playRound(playerChoice, getComputerChoice())
-        switch(result){
-            case 'tie':
-                break;
-            case 1:
-                playerRoundsWon++;
-                break;
-            case 0:
-                computerRoundsWon++;
-                break;
-        }
-    }
-    if (playerRoundsWon == computerRoundsWon) {winner = 'Final Result: A Tie!'}
-    else if (playerRoundsWon > computerRoundsWon) {winner = 'Final Result: You Win!'}
-    else {winner = 'Final Result: You Lose!'}
-
-    console.log(`You won ${playerRoundsWon} rounds and the computer won ${computerRoundsWon}. ${winner}`)
-}
 
 const rock = document.querySelector('.rock');
 rock.addEventListener('click', (e) => {
@@ -95,4 +71,3 @@ scissors.addEventListener('click', (e) => {
     console.log('scissors')
     playRound(e.target.innerText, getComputerChoice());
 })
-
