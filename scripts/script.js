@@ -13,26 +13,40 @@ function getComputerChoice(){
 }
 
 function playRound(playerSelection, computerSelection){
-    
+    const pSelect = document.querySelector('.pChoice');
+    const cSelect = document.querySelector('.cChoice');
+    const pText = "Player Choice: ";
+    const cText = "Computer Choice: ";
+    pSelect.innerText = pText + playerSelection;
+    cSelect.innerText = cText + computerSelection;
+    resultText = document.querySelector('.result-text');
+    pWins = document.querySelector('.pWins');
+    cWins = document.querySelector('.cWins');
+    ties = document.querySelector('.ties');
     if (playerSelection == computerSelection){
-        console.log("Tie! You both picked " + playerSelection);
-        return 'tie';
+        //console.log("Tie! You both picked " + playerSelection);
+        resultText.innerText = `Result: It's a tie!`
+        ties.innerText = Number(ties.innerText) + 1;
     }
-    if (playerSelection == 'Rock' && computerSelection == 'Scissors'){
+    else if (playerSelection == 'Rock' && computerSelection == 'Scissors'){
+        //console.log("You Win! " + playerSelection + " beats " + computerSelection);
+        resultText.innerText = `Result: You Win!`;
+        pWins.innerText = Number(pWins.innerText) + 1;
+    }
+    else if (playerSelection == 'Paper' && computerSelection == 'Rock'){
         console.log("You Win! " + playerSelection + " beats " + computerSelection);
-        return 1;
+        resultText.innerText = `Result: You Win!`;
+        pWins.innerText = Number(pWins.innerText) + 1;
     }
-    if (playerSelection == 'Paper' && computerSelection == 'Rock'){
-        console.log("You Win! " + playerSelection + " beats " + computerSelection);
-        return 1;
-    }
-    if (playerSelection == 'Scissors' && computerSelection == 'Paper'){
+    else if (playerSelection == 'Scissors' && computerSelection == 'Paper'){
         console.log("You Win! " + playerSelection + " beats " +computerSelection);
-        return 1;
+        resultText.innerText = `Result: You Win!`;
+        pWins.innerText = Number(pWins.innerText) + 1;
+    } else {
+        resultText.innerText = `Result: You Lose!`;
+        cWins.innerText = Number(cWins.innerText) + 1;
     }
-    console.log("You Lose! " + playerSelection + " loses to " + computerSelection);
-    return 0;
-}
+};
 
 function playGame(){
     playerRoundsWon = 0;
@@ -81,3 +95,4 @@ scissors.addEventListener('click', (e) => {
     console.log('scissors')
     playRound(e.target.innerText, getComputerChoice());
 })
+

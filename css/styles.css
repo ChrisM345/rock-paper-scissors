@@ -2,3 +2,8 @@
     background-color: lightblue;
     padding: 15px 30px;
 }
+
+.choice{
+    display: flex;
+    justify-content: space-around;
+}
