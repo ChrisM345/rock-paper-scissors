@@ -18,10 +18,11 @@ function getComputerChoice(){
 }
 
 function resetGame() {
-    console.log("resetting")
     for (const button of buttons){
         button.disabled = false;
     }
+
+    //Remove reset section and set values back to original
     const gameEndedSection = document.querySelector('.gameEndedSection');
     gameEndedSection.remove();
     playerRoundsWon = 0;
@@ -35,7 +36,6 @@ function resetGame() {
     document.querySelector('.cChoice').innerText = 'Computer Choice:';
 }
 function gameEnded(){
-    console.log("game ended!")
     //Disable all buttons as the game has ended
     for (const button of buttons){
         button.disabled = true;

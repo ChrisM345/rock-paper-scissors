@@ -4,6 +4,25 @@
 }
 
 .choice{
-    display: flex;
-    justify-content: space-around;
+    border-top-style: solid;
+    border-top-color: black;
+
+    border-bottom-style: solid;
+    border-bottom-color: black;
+
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.content{
+    display: flex 1;
+    background-color: #f4f4f4;
+    border-style: solid;
+    border-color: black;
+    justify-content: center;
+    text-align: center;
+}
+
+.result-text{
+    font-weight: 500;
 }
