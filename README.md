@@ -1,1 +1,1 @@
-Basic rock-paper-scissors project to practice JavaScript
+rock-paper-scissors project now includes GUI instead of prompts.
